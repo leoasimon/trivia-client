@@ -1,0 +1,9 @@
+.answer-wrong {
+  background-color: red !important;
+  color: white !important;
+}
+
+.answer-right {
+  background-color: green !important;
+  color: white !important;
+}
