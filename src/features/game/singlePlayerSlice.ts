@@ -6,7 +6,7 @@ import { Question, SinglePlayerGame } from "./types";
 const apiUrl = "https://the-trivia-api.com/api";
 const questionsUrl = `${apiUrl}/questions`;
 
-interface SinglePlayerState {
+export interface SinglePlayerState {
   game: SinglePlayerGame;
   step: number;
   status: "idle" | "loading" | "failed";
@@ -64,7 +64,12 @@ const singlePlayerSlice = createSlice({
       })
       .addCase(loadGame.fulfilled, (state, action) => {
         state.status = "idle";
-        state.game.questions = action.payload;
+        state.step = 0;
+        state.game = {
+          ...emptyGame,
+          questions: action.payload,
+        };
+        // state.game.questions = action.payload;
       });
   },
 });

@@ -1,4 +1,4 @@
-import { Button, List, Space, Typography } from "antd";
+import { Button, List, Space } from "antd";
 import { useEffect, useState } from "react";
 
 import "./index.css";
@@ -39,16 +39,17 @@ const QuestionPlay: React.FC<QuestionPlayProps> = ({
 
   return (
     <Space direction="vertical">
-      <Typography.Paragraph>{question.question}</Typography.Paragraph>
+      <p>{question.question}</p>
       <List
         dataSource={question.answers}
         renderItem={(answer) => {
           const classModifier = getClassModifier(answer);
           return (
             <Button
+              block
               onClick={() => handleAnswer(answer)}
               disabled={pickedAnswer !== undefined}
-              className={classModifier}
+              className={`answer-btn ${classModifier}`}
             >
               {answer}
             </Button>

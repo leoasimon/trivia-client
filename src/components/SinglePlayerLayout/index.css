@@ -1,0 +1,5 @@
+.game-info {
+  display: flex;
+  justify-content: right;
+  padding: 12px 0;
+}

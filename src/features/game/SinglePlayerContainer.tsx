@@ -1,7 +1,8 @@
 import { Space, Typography } from "antd";
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import QuestionPlay from "./components/QuestionPlay";
+import SinglePlayerLayout from "../../components/SinglePlayerLayout";
+import SinglePlayerOver from "../../components/SinglePlayerOver";
 import {
   loadGame,
   selectSinglePlayerGameState,
@@ -24,34 +25,31 @@ const SinglePlayerContainer: React.FC = () => {
     }
 
     if (step === game.questions.length) {
-      return <Space>Game over</Space>;
+      return (
+        <SinglePlayerOver
+          nQuestions={game.questions.length}
+          score={game.score}
+          reload={() => dispatch(loadGame())}
+        />
+      );
     }
 
     const question =
       singlePlayerGameState.game.questions[singlePlayerGameState.step];
 
     return (
-      <>
-        <QuestionPlay
-          question={question}
-          answerQuestion={(isCorrect) =>
-            dispatch(singlePlayerActions.answerQuestion(isCorrect))
-          }
-        />
-
-        <Space>
-          <span>Score: {singlePlayerGameState.game.score}</span>
-          <span>
-            Question {singlePlayerGameState.step + 1} /{" "}
-            {singlePlayerGameState.game.questions.length}
-          </span>
-        </Space>
-      </>
+      <SinglePlayerLayout
+        answerQuestion={(isCorrect) =>
+          dispatch(singlePlayerActions.answerQuestion(isCorrect))
+        }
+        state={singlePlayerGameState}
+        question={question}
+      />
     );
   };
 
   return (
-    <Space direction="vertical">
+    <Space direction="vertical" style={{ width: "100%" }}>
       <Typography.Title level={5}>Single player game</Typography.Title>
       {singlePlayerCore()}
     </Space>

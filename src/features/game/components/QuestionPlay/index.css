@@ -1,9 +1,19 @@
+.answer-btn {
+  height: auto;
+  white-space: normal;
+  margin-bottom: 6px;
+}
+
+.answer-btn:last-child {
+  margin-bottom: 0;
+}
+
 .answer-wrong {
-  background-color: red !important;
+  background-color: #c23616 !important;
   color: white !important;
 }
 
 .answer-right {
-  background-color: green !important;
+  background-color: #44bd32 !important;
   color: white !important;
 }

@@ -5,7 +5,7 @@ const GameMenu: React.FC = () => {
   return (
     <List>
       <List.Item>
-        <Button>
+        <Button block>
           <Link to="single-player">Single player</Link>
         </Button>
       </List.Item>
